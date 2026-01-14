@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.skyyeoh.composeweatherforcastapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.skyyeoh.composeweatherforcastapp"
@@ -80,4 +80,6 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+
+
 }
