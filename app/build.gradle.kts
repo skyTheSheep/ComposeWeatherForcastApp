@@ -1,3 +1,7 @@
+
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -9,7 +13,16 @@ android {
     namespace = "com.skyyeoh.composeweatherforcastapp"
     compileSdk = 36
 
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
     defaultConfig {
+
+        val localProperties = Properties()
+        localProperties.load(FileInputStream(rootProject.file("local.properties")))
+
         applicationId = "com.skyyeoh.composeweatherforcastapp"
         minSdk = 24
         targetSdk = 35
@@ -17,6 +30,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", "\"${localProperties["API_KEY"]}\"")
     }
 
     buildTypes {
@@ -32,9 +47,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        compose = true
-    }
+
 }
 
 dependencies {
