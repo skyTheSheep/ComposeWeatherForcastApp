@@ -12,8 +12,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -34,6 +32,7 @@ import androidx.navigation.NavController
 import com.bawp.jetweatherforecast.model.Weather
 import com.bawp.jetweatherforecast.model.WeatherItem
 import com.skyyeoh.composeweatherforcastapp.data.DataOrException
+import com.skyyeoh.composeweatherforcastapp.navigation.WeatherScreens
 import com.skyyeoh.composeweatherforcastapp.utils.formatDate
 import com.skyyeoh.composeweatherforcastapp.utils.formatDecimals
 import com.skyyeoh.composeweatherforcastapp.widgets.HumidityWindPressureRow
@@ -44,11 +43,15 @@ import com.skyyeoh.composeweatherforcastapp.widgets.WeatherStateImage
 import com.skyyeoh.composeweatherforcastapp.widgets.mockWeatherItemList
 
 @Composable
-fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel()) {
+fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel(),
+               city: String?) {
+
+    Log.d("MainScreen", "MainScreen: city = $city")
+
     val weatherData = produceState(
         initialValue = DataOrException(loading = true)
     ) {
-        value = mainViewModel.getWeatherData(city = "Seattle")
+        value = mainViewModel.getWeatherData(city = city ?: "Seattle")
     }.value
 
     if (weatherData.loading == true) {
@@ -68,7 +71,9 @@ fun MainScaffold(weather: Weather?, navController: NavController) {
             title = (weather?.city?.name
                 ?: "SkyLand") + ",${weather?.city?.country ?: "Sky World"}",
             navController = navController,
-            icon = Icons.Default.ArrowBackIosNew
+            onAddActionClicked = {
+                navController.navigate(WeatherScreens.SearchScreen.name)
+            }
         ) {
             Log.d("TAG", "MainScaffold: Button Clicked")
         }

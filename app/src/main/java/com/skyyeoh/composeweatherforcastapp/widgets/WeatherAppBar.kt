@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,7 +44,9 @@ fun WeatherAppBar(
     },
         actions = {
             if (isMainScreen) {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {
+                    onAddActionClicked.invoke()
+                }) {
                     Icon(imageVector = Icons.Default.Search,
                         contentDescription = "search icon")
                 }
