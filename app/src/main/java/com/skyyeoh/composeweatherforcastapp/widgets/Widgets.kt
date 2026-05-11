@@ -22,9 +22,11 @@ import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.bawp.jetweatherforecast.model.WeatherItem
-import com.bawp.jetweatherforecast.model.WeatherObject
 import com.skyyeoh.composeweatherforcastapp.R
+import com.skyyeoh.composeweatherforcastapp.model.FeelsLike
+import com.skyyeoh.composeweatherforcastapp.model.Temp
+import com.skyyeoh.composeweatherforcastapp.model.WeatherItem
+import com.skyyeoh.composeweatherforcastapp.model.WeatherObject
 import com.skyyeoh.composeweatherforcastapp.utils.formatDate
 import com.skyyeoh.composeweatherforcastapp.utils.formatDateTime
 import com.skyyeoh.composeweatherforcastapp.utils.formatDecimals
@@ -172,10 +174,10 @@ fun mockWeatherItemList(): List<WeatherItem> {
             clouds = 90,
             deg = 180,
             dt = 123456789,
-            feels_like = com.bawp.jetweatherforecast.model.FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
+            feels_like = FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
             gust = 0.0,
             humidity = 80,
-            temp = com.bawp.jetweatherforecast.model.Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
+            temp = Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
             pressure = 1013,
             weather = listOf(
                 WeatherObject(
@@ -195,10 +197,10 @@ fun mockWeatherItemList(): List<WeatherItem> {
             clouds = 90,
             deg = 180,
             dt = 123456789,
-            feels_like = com.bawp.jetweatherforecast.model.FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
+            feels_like = FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
             gust = 0.0,
             humidity = 80,
-            temp = com.bawp.jetweatherforecast.model.Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
+            temp = Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
             pressure = 1013,
             weather = listOf(
                 WeatherObject(
@@ -218,10 +220,10 @@ fun mockWeatherItemList(): List<WeatherItem> {
             clouds = 90,
             deg = 180,
             dt = 123456789,
-            feels_like = com.bawp.jetweatherforecast.model.FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
+            feels_like = FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
             gust = 0.0,
             humidity = 80,
-            temp = com.bawp.jetweatherforecast.model.Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
+            temp = Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
             pressure = 1013,
             weather = listOf(
                 WeatherObject(
@@ -241,10 +243,10 @@ fun mockWeatherItemList(): List<WeatherItem> {
             clouds = 90,
             deg = 180,
             dt = 123456789,
-            feels_like = com.bawp.jetweatherforecast.model.FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
+            feels_like = FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
             gust = 0.0,
             humidity = 80,
-            temp = com.bawp.jetweatherforecast.model.Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
+            temp = Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
             pressure = 1013,
             weather = listOf(
                 WeatherObject(
@@ -264,10 +266,10 @@ fun mockWeatherItemList(): List<WeatherItem> {
             clouds = 90,
             deg = 180,
             dt = 123456789,
-            feels_like = com.bawp.jetweatherforecast.model.FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
+            feels_like = FeelsLike(day = 55.0, night = 54.0, eve = 56.0, morn = 51.0),
             gust = 0.0,
             humidity = 80,
-            temp = com.bawp.jetweatherforecast.model.Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
+            temp = Temp(day = 56.0, min = 50.0, max = 60.0, night = 55.0, eve = 57.0, morn = 52.0),
             pressure = 1013,
             weather = listOf(
                 WeatherObject(

@@ -29,9 +29,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bawp.jetweatherforecast.model.Weather
-import com.bawp.jetweatherforecast.model.WeatherItem
 import com.skyyeoh.composeweatherforcastapp.data.DataOrException
+import com.skyyeoh.composeweatherforcastapp.model.Weather
+import com.skyyeoh.composeweatherforcastapp.model.WeatherItem
 import com.skyyeoh.composeweatherforcastapp.navigation.WeatherScreens
 import com.skyyeoh.composeweatherforcastapp.utils.formatDate
 import com.skyyeoh.composeweatherforcastapp.utils.formatDecimals

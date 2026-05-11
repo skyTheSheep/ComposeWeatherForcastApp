@@ -7,9 +7,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.skyyeoh.composeweatherforcastapp.screens.about.AboutScreen
+import com.skyyeoh.composeweatherforcastapp.screens.favorite.FavoriteScreen
 import com.skyyeoh.composeweatherforcastapp.screens.main.MainScreen
 import com.skyyeoh.composeweatherforcastapp.screens.main.MainViewModel
 import com.skyyeoh.composeweatherforcastapp.screens.search.SearchScreen
+import com.skyyeoh.composeweatherforcastapp.screens.settings.SettingsScreen
 import com.skyyeoh.composeweatherforcastapp.screens.splash.WeatherSplashScreen
 
 @Composable
@@ -37,6 +40,18 @@ fun WeatherNavigation() {
         }
         composable(WeatherScreens.SearchScreen.name) {
             SearchScreen(navController)
+        }
+
+        composable(WeatherScreens.AboutScreen.name) {
+            AboutScreen(navController)
+        }
+
+        composable(WeatherScreens.SettingsScreen.name) {
+            SettingsScreen(navController)
+        }
+
+        composable(WeatherScreens.FavoriteScreen.name) {
+            FavoriteScreen(navController)
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.skyyeoh.composeweatherforcastapp.network
 
-import com.bawp.jetweatherforecast.model.Weather
+import com.skyyeoh.composeweatherforcastapp.model.Weather
 import com.skyyeoh.composeweatherforcastapp.utils.Constants.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query

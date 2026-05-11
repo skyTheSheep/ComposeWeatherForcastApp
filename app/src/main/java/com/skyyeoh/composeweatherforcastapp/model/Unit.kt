@@ -1,4 +1,4 @@
-package com.bawp.jetweatherforecast.model
+package com.skyyeoh.composeweatherforcastapp.model
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

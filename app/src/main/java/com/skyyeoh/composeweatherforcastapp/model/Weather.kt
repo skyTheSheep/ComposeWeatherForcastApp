@@ -1,4 +1,4 @@
-package com.bawp.jetweatherforecast.model
+package com.skyyeoh.composeweatherforcastapp.model
 
 data class Weather(
     val city: City,

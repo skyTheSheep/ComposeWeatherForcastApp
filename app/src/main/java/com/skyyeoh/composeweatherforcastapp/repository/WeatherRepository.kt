@@ -1,8 +1,8 @@
 package com.skyyeoh.composeweatherforcastapp.repository
 
 import android.util.Log
-import com.bawp.jetweatherforecast.model.Weather
 import com.skyyeoh.composeweatherforcastapp.data.DataOrException
+import com.skyyeoh.composeweatherforcastapp.model.Weather
 import com.skyyeoh.composeweatherforcastapp.network.WeatherAPI
 import javax.inject.Inject
 
