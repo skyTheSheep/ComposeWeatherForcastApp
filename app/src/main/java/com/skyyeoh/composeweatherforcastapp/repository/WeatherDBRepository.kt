@@ -2,6 +2,7 @@ package com.skyyeoh.composeweatherforcastapp.repository
 
 import com.skyyeoh.composeweatherforcastapp.data.WeatherDao
 import com.skyyeoh.composeweatherforcastapp.model.Favorite
+import com.skyyeoh.composeweatherforcastapp.model.Unit
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -18,4 +19,16 @@ class WeatherDBRepository @Inject constructor(private val weatherDao: WeatherDao
     suspend fun deleteAllFavorites() = weatherDao.deleteAllFavorites()
 
     suspend fun deleteFavorite(favorite: Favorite) = weatherDao.deleteFavorite(favorite)
+
+    // Unit table
+
+    fun getUnits(): Flow<List<Unit>> = weatherDao.getUnits()
+
+    suspend fun insertUnit(unit: Unit) = weatherDao.insertUnit(unit)
+
+    suspend fun updateUnit(unit: Unit) = weatherDao.updateUnit(unit)
+
+    suspend fun deleteAllUnits() = weatherDao.deleteAllUnits()
+
+    suspend fun deleteUnit(unit: Unit) = weatherDao.deleteUnit(unit)
 }

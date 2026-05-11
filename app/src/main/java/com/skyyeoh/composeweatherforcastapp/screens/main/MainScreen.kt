@@ -20,7 +20,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,6 +38,7 @@ import com.skyyeoh.composeweatherforcastapp.data.DataOrException
 import com.skyyeoh.composeweatherforcastapp.model.Weather
 import com.skyyeoh.composeweatherforcastapp.model.WeatherItem
 import com.skyyeoh.composeweatherforcastapp.navigation.WeatherScreens
+import com.skyyeoh.composeweatherforcastapp.screens.settings.SettingsViewModel
 import com.skyyeoh.composeweatherforcastapp.utils.formatDate
 import com.skyyeoh.composeweatherforcastapp.utils.formatDecimals
 import com.skyyeoh.composeweatherforcastapp.widgets.HumidityWindPressureRow
@@ -43,28 +49,42 @@ import com.skyyeoh.composeweatherforcastapp.widgets.WeatherStateImage
 import com.skyyeoh.composeweatherforcastapp.widgets.mockWeatherItemList
 
 @Composable
-fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel(),
+fun MainScreen(navController: NavController,
+               mainViewModel: MainViewModel = hiltViewModel(),
+               settingsViewModel: SettingsViewModel = hiltViewModel(),
                city: String?) {
-
-    Log.d("MainScreen", "MainScreen: city = $city")
-
-    val weatherData = produceState(
-        initialValue = DataOrException(loading = true)
-    ) {
-        value = mainViewModel.getWeatherData(city = city ?: "Seattle")
-    }.value
-
-    if (weatherData.loading == true) {
-        CircularProgressIndicator()
-    } else if (weatherData.data != null) {
-
+    val curCity: String = if (city!!.isBlank()) "Seattle" else city
+    val unitFromDb = settingsViewModel.unitList.collectAsState().value
+    var unit by remember {
+        mutableStateOf("imperial")
+    }
+    var isImperial by remember {
+        mutableStateOf(false)
     }
 
-    MainScaffold(weatherData.data, navController)
+    if (unitFromDb.isNotEmpty()) {
+        unit = unitFromDb.first().unit.split(" ").first().lowercase()
+        isImperial = unit == "imperial"
+
+        val weatherData = produceState(
+            initialValue = DataOrException(loading = true)
+        ) {
+            value = mainViewModel.getWeatherData(city = curCity,
+                units = unit)
+        }.value
+
+        if (weatherData.loading == true) {
+            CircularProgressIndicator()
+        } else if (weatherData.data != null) {
+
+        }
+
+        MainScaffold(weatherData.data, navController, isImperial = isImperial)
+    }
 }
 
 @Composable
-fun MainScaffold(weather: Weather?, navController: NavController) {
+fun MainScaffold(weather: Weather?, navController: NavController, isImperial: Boolean) {
 
     Scaffold(topBar = {
         WeatherAppBar(
@@ -78,12 +98,12 @@ fun MainScaffold(weather: Weather?, navController: NavController) {
             Log.d("TAG", "MainScaffold: Button Clicked")
         }
     }) {
-        MainContent(data = weather, modifier = Modifier.padding(top = it.calculateTopPadding()) )
+        MainContent(data = weather, modifier = Modifier.padding(top = it.calculateTopPadding()), isImperial = isImperial)
     }
 }
 
 @Composable
-fun MainContent(data: Weather?, modifier: Modifier = Modifier) {
+fun MainContent(data: Weather?, modifier: Modifier = Modifier, isImperial: Boolean) {
 
     val imageUrl = "https://openweathermap.org/img/wn/10d.png" // the 10d is where the icon is
 //    val imageUrl = "https://openweathermap.org/img/wn/${data?.list.first().weather.first().icon}.png"
@@ -122,7 +142,7 @@ fun MainContent(data: Weather?, modifier: Modifier = Modifier) {
                 )
             }
         }
-        HumidityWindPressureRow(weather = data?.list?.first())
+        HumidityWindPressureRow(weather = data?.list?.first(), isImperial = isImperial)
         HorizontalDivider(Modifier, DividerDefaults.Thickness, DividerDefaults.color)
         SunriseSunsetRow(weather = data?.list?.first())
 
